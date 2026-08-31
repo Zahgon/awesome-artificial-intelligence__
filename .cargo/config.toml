@@ -1,0 +1,4 @@
+[env]
+TMP = { value = "C:\\Users\\MohammadN-Int\\AppData\\Local\\Temp", force = true }
+TEMP = { value = "C:\\Users\\MohammadN-Int\\AppData\\Local\\Temp", force = true }
+TMPDIR = { value = "C:\\Users\\MohammadN-Int\\AppData\\Local\\Temp", force = true }

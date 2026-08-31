@@ -7,8 +7,10 @@ on:
       - AUTOMATION.md
       - CONTRIBUTING.md
       - CURATION.md
-      - "scripts/**"
+      - "src/**"
       - "tests/**"
+      - Cargo.toml
+      - Cargo.lock
       - ".github/codex/**"
       - ".github/ISSUE_TEMPLATE/**"
       - ".github/pull_request_template.md"
@@ -28,18 +30,17 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
+      - uses: dtolnay/rust-toolchain@stable
       - name: Run unit tests
-        run: python -m unittest discover -s tests -v
+        run: cargo test
       - name: Validate README structure
         env:
           BASE_REF: ${{ github.base_ref }}
         run: |
+          cargo build --release
           if [ -n "$BASE_REF" ]; then
             git fetch origin "$BASE_REF"
-            python scripts/validate_readme.py README.md --check-links --base "origin/$BASE_REF"
+            ./target/release/validate_readme README.md --check-links --base "origin/$BASE_REF"
           else
-            python scripts/validate_readme.py README.md --check-links
+            ./target/release/validate_readme README.md --check-links
           fi

@@ -1,0 +1,18 @@
+[package]
+name = "awesome-artificial-intelligence"
+version = "0.1.0"
+edition = "2021"
+description = "A collection of useful AI resources"
+readme = "README.md"
+rust-version = "1.74"
+
+[lib]
+name = "validate_readme"
+path = "src/lib.rs"
+
+[[bin]]
+name = "validate_readme"
+path = "src/bin/validate_readme.rs"
+
+[dependencies]
+regex = "1"
